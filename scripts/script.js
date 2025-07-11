@@ -10,8 +10,8 @@ function renderCalendar(date = new Date()) {
     const month = date.getMonth();
     const year = date.getFullYear();
 
-    const totalDays = new Date(day, month + 1, 0).getDate();
-    const firstDayOfMonth = new Date(day, month, 1).getDate();
+    const totalDays = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
 
     monthYearEl.textContent = date.toLocaleDateString("en-US", { month: 'long', year: 'numeric' });
 
@@ -30,76 +30,102 @@ function renderCalendar(date = new Date()) {
 
     for (let day = 0; day < totalDays; day++) {
         const dateStr = `${String(day + 1).padStart(2, '0')}-${String(month).padStart(2, '0')}-${year}`;
-    }
 
-    const cell = document.createElement("div");
-    cell.className = "day";
+        const cell = document.createElement("div");
+        cell.className = "day";
 
-    if (day === today.getMonth() && month === today.getMonth() && year === today.getFullYear()) {
-        cell.classList.add("today");
-    }
+        const today = new Date();
 
-    const dateEl = document.createElement("div");
+        if (
+            day + 1 === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()
+        ) { cell.classList.add("today"); }
 
-    dateEl.className = "date-number";
-    dateEl.textContent = day;
-    cell.appendChild(dateEl);
+        const dateEl = document.createElement("div");
 
-    const eventToday = events.filter(e => e.date === dateStr);
-    const eventBox = document.createElement("div");
-    eventBox.className = "events";
+        dateEl.className = "date-number";
+        dateEl.textContent = day;
+        cell.appendChild(dateEl);
 
-    eventsToday.forEach(event => {
-        const ev = document.createEleme("div");
-        ev.className = "event";
+        const eventToday = events.filter(e => e.date === dateStr);
+        const eventBox = document.createElement("div");
+        eventBox.className = "events";
 
-        const courseEl = document.createElement("div");
-        courseEl.className = "course";
-        courseEl.textContent = event.title.split(" - ")[0];
+        eventToday.forEach(event => {
+            const ev = document.createEleme("div");
+            ev.className = "event";
 
-        const instructorEl = document.createElement("div");
+            const courseEl = document.createElement("div");
+            courseEl.className = "course";
+            courseEl.textContent = event.title.split(" - ")[0];
 
-        instructorEl.className = "instructor";
-        instructorEl.textContent = event.title.split(" - ")[1];
+            const instructorEl = document.createElement("div");
 
-        const timeEl = document.createElement("div");
-        timeEl.className = "time";
-        timeEl.textContent = event.start_time + " - " + event.end_time();
+            instructorEl.className = "instructor";
+            instructorEl.textContent = event.title.split(" - ")[1];
 
-        ev.appendChild(courseEl);
-        ev.appendChild(instructorEl);
-        ev.appendChild(timeEl);
-        eventBox.appendChild(ev);
-    });
+            const timeEl = document.createElement("div");
+            timeEl.className = "time";
+            timeEl.textContent = event.start_time + " - " + event.end_time();
 
-    const overlay = document.createElement("div");
-    overlay.className = "day-overlay";
+            ev.appendChild(courseEl);
+            ev.appendChild(instructorEl);
+            ev.appendChild(timeEl);
+            eventBox.appendChild(ev);
+        });
 
-    const addBtn = document.createElement("button");
+        const overlay = document.createElement("div");
+        overlay.className = "day-overlay";
 
-    addBtn.className = "overlay-btn";
+        const addBtn = document.createElement("button");
 
-    addBtn.textContent = "+ Add";
+        addBtn.className = "overlay-btn";
 
-    addBtn.onclick = e => {
-        e.stopPropagation();
-        openModalForAdd(dateStr);
-    };
+        addBtn.textContent = "+ Add";
 
-    overlay.appendChild(addBtn);
-
-    if (eventToday.length > 0) {
-        const editBtn = document.createElement("button");
-        editBtn.className = "overlay-btn";
-        editBtn.textContent = "Edit";
-        editBtn.onclick = e => {
+        addBtn.onclick = e => {
             e.stopPropagation();
-            openModalForEdit(eventToday);
+            openModalForAdd(dateStr);
+        };
+
+        overlay.appendChild(addBtn);
+
+        if (eventToday.length > 0) {
+            const editBtn = document.createElement("button");
+            editBtn.className = "overlay-btn";
+            editBtn.textContent = "Edit";
+            editBtn.onclick = e => {
+                e.stopPropagation();
+                openModalForEdit(eventToday);
+            }
+            overlay.appendChild(editBtn);
         }
-        overlay.appendChild(editBtn);
+
+        cell.appendChild(overlay);
+        cell.appendChild(eventBox);
+        calendarEl.appendChild(cell);
+    }
+}
+
+function openModalForAdd(dateStr) {
+    document.getElementById("formAction").value = "add";
+    document.getElementById("eventId").value = "";
+    document.getElementById("deleteEventId").value = "";
+    document.getElementById("courseName").value = "";
+    document.getElementById("instructorName").value = "";
+    document.getElementById("startDate").value = dateStr;
+    document.getElementById("endDate").value = dateStr;
+    document.getElementById("startTime").value = "09:00";
+    document.getElementById("endTime").value = "10:00";
+
+    const selector = document.getElementById("eventSelector");
+    const wrapper = document.getElementById("eventSelectorWrapper");
+
+    if (selector && wrapper) {
+        selector.innerHTML = "";
+        wrapper.style.display = "none";
     }
 
-    cell.appendChild(overlay);
-    cell.appendChild(eventBox);
-    calendarEl.appendChild(cell);
+    modalEl.style.display = "flex";
 }
