@@ -137,16 +137,43 @@ header {
 .event {
     background-color: var(--primary);
     color: white;
-    padding: 3px 6px;
-    border-radius: 4px;
-    margin-top: 4px;
-    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    padding: 6px 8px;
+    border-radius: 6px;
+    margin-top: 6px;
+    font-size: 13px;
+    line-height: 1.4;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.15s ease;
 }
 
 .event:hover {
-    transform: scale(1.03);
+    transform: scale(1.02);
+}
+
+.event .course {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.event .instructor {
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+.event .time {
+    font-size: 12px;
+    margin-top: 3px;
+    color: #F3F3F3;
+}
+
+.event-meta {
+    font-size: 12px;
+    color: #EFE;
+    line-height: 1.2;
 }
 
 .alert {
