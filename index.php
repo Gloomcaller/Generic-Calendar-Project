@@ -1,3 +1,7 @@
+<?php
+include "./scripts/calendar.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,15 +18,22 @@
         <h1>📅 Calendar<br> Calendar Project</h1>
     </header>
 
+    <?php if ($successMsg): ?>
+        <div class="alert success"><?= htmlspecialchars($successMsg) ?></div>
+    <?php endif; ?>
+    <?php if ($errorMsg): ?>
+        <div class="alert error"><?= htmlspecialchars($errorMsg) ?></div>
+    <?php endif; ?>
+
     <div class="clock-container">
         <div id="clock"></div>
     </div>
 
     <div class="calendar">
         <div class="nav-btn-container">
-            <button class="nav-btn">⏮️</button>
+            <button class="nav-btn" onclick="changeMonth(-1)">⏮️</button>
             <h2 id="monthYear"></h2>
-            <button class="nav-btn">⏭️</button>
+            <button class="nav-btn" onclick="changeMonth(1)">⏭️</button>
         </div>
 
         <div class="calendar-grid" id="calendar"></div>
@@ -72,9 +83,14 @@
                 <button type="submit" class="submit-btn">🗑️ Delete</button>
             </form>
 
-            <button type="button" class="submit-btn">❌ Cancel</button>
+            <button type="button" class="submit-btn" onclick="closeModal()">❌ Cancel</button>
         </div>
     </div>
+
+    <script>
+        const events = <?= json_encode($eventsFromDB, JSON_UNESCAPED_UNICODE); ?>;
+    </script>
+
     <script src="./scripts/script.js"></script>
 </body>
 

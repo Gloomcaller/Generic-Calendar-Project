@@ -6,12 +6,11 @@ let currDate = new Date();
 function renderCalendar(date = new Date()) {
     calendarEl.innerHTML = '';
 
-    const day = new Date();
     const month = date.getMonth();
     const year = date.getFullYear();
 
     const totalDays = new Date(year, month + 1, 0).getDate();
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const firstDayOfMonth = (new Date(year, month, 1).getDay() + 6) % 7;
 
     monthYearEl.textContent = date.toLocaleDateString("en-US", { month: 'long', year: 'numeric' });
 
@@ -115,8 +114,12 @@ function openModalForAdd(dateStr) {
     document.getElementById("deleteEventId").value = "";
     document.getElementById("courseName").value = "";
     document.getElementById("instructorName").value = "";
-    document.getElementById("startDate").value = dateStr;
-    document.getElementById("endDate").value = dateStr;
+
+    const [day, month, year] = dateStr.split("-");
+    const isoDate = `${year}-${month}-${day}`;
+
+    document.getElementById("startDate").value = isoDate;
+    document.getElementById("endDate").value = isoDate;
     document.getElementById("startTime").value = "09:00";
     document.getElementById("endTime").value = "10:00";
 

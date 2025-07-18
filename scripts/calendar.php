@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['action'] ?? '') === "add")
 
         $stmt->close();
 
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success");
+        header("Location: " . $_SERVER['PHP_SELF'] . "?success=1");
         exit;
     } else {
         header("Location: " . $_SERVER['PHP_SELF'] . "?error=1");
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? '') === "edit"
 
     if ($id && $course && $instructor && $start && $end) {
         $stmt = $conn->prepare(
-            "UPDATE appointments SET course_name = ?, instructor_name = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ?, WHERE id = ?"
+            "UPDATE appointments SET course_name = ?, instructor_name = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ? WHERE id = ?"
         );
 
         $stmt->bind_param("ssssssi", $course, $instructor, $start, $end, $startTime, $endTime, $id);
