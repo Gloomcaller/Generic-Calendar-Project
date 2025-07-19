@@ -11,7 +11,8 @@ include "./scripts/calendar.php";
     <title>Calendar</title>
     <meta name="description" content="Portfolio Calendar Project">
     <link rel="stylesheet" href="./styles/styles.css">
-    <link rel="icon" type="image/png" href="./favicon.png"> <!-- Temp for now -->
+    <!-- <link rel="icon" type="image/png" href="./favicon.png"> -->
+    <!-- Temp for now -->
 </head>
 
 <body>

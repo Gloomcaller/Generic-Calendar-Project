@@ -95,27 +95,28 @@ button.nav-btn {
     gap: 2px;
 }
 
-@media(max-width: 1024px) {
+@media (max-width: 1024px) {
     .calendar-grid {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 10px;
-    }
-
-    .day,
-    .day-name {
-        min-width: 140px;
-        flex-shrink: 0;
-        scroll-snap-align: start;
+        grid-template-columns: repeat(7, minmax(80px, 1fr));
     }
 }
 
 @media (max-width: 768px) {
     .calendar-grid {
-        grid-template-columns: repeat(7, minmax(40px, 1fr));
+        grid-template-columns: repeat(7, minmax(50px, 1fr));
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-grid {
+        grid-template-columns: repeat(7, minmax(40px, 1fr));
+        font-size: 0.7rem;
+    }
+
+    .day {
+        padding: 4px;
+        min-height: 60px;
     }
 }
 
