@@ -11,12 +11,17 @@ include "./scripts/calendar.php";
     <title>Calendar</title>
     <meta name="description" content="Portfolio Calendar Project">
     <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="icon" type="image/png" href="./favicon.png"> <!-- Temp for now -->
 </head>
 
 <body>
     <header>
-        <h1>📅 Calendar<br> Calendar Project</h1>
+        <h1>Calendar</h1>
+        <div class="clock-container">
+            <div id="clock"></div>
+        </div>
     </header>
+
 
     <?php if ($successMsg): ?>
         <div class="alert success"><?= htmlspecialchars($successMsg) ?></div>
@@ -25,14 +30,11 @@ include "./scripts/calendar.php";
         <div class="alert error"><?= htmlspecialchars($errorMsg) ?></div>
     <?php endif; ?>
 
-    <div class="clock-container">
-        <div id="clock"></div>
-    </div>
-
     <div class="calendar">
         <div class="nav-btn-container">
             <button class="nav-btn" onclick="changeMonth(-1)">⏮️</button>
             <h2 id="monthYear"></h2>
+            <button class="nav-btn" onclick="goToToday()">Today</button>
             <button class="nav-btn" onclick="changeMonth(1)">⏭️</button>
         </div>
 

@@ -77,10 +77,22 @@ header {
     text-decoration: underline;
 }
 
+button.nav-btn img {
+    display: block;
+}
+
+button.nav-btn {
+    border: none;
+    background: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    grid-auto-rows: minmax(80px, auto);
+    gap: 2px;
 }
 
 @media(max-width: 1024px) {
@@ -97,6 +109,13 @@ header {
         min-width: 140px;
         flex-shrink: 0;
         scroll-snap-align: start;
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-grid {
+        grid-template-columns: repeat(7, minmax(40px, 1fr));
+        font-size: 0.8rem;
     }
 }
 

@@ -181,6 +181,11 @@ function changeMonth(offset) {
     renderCalendar(currDate);
 }
 
+function goToToday() {
+    currDate = new Date();
+    renderCalendar(currDate);
+}
+
 function updateClock() {
     const now = new Date();
     const clock = document.getElementById("clock");
