@@ -1,7 +1,5 @@
 <?php
 
-use Vtiful\Kernel\Format;
-
 include "connection.php";
 
 $successMsg = '';
