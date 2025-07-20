@@ -7,19 +7,19 @@ $errorMsg = '';
 $eventsFromDB = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['action'] ?? '') === "add") {
-    $course = trim($_POST["course_name"] ?? '');
-    $instructor = trim($_POST["instructor_name"] ?? '');
+    $eventName = trim($_POST["event_name"] ?? '');
+    $eventDesc = trim($_POST["event_description"] ?? '');
     $start = $_POST["start_date"] ?? '';
     $end = $_POST["end_date"] ?? '';
     $startTime = $_POST["start_time"] ?? '';
     $endTime = $_POST["end_time"] ?? '';
 
-    if ($course && $instructor && $start && $end) {
+    if ($eventName && $eventDesc && $start && $end) {
         $stmt = $conn->prepare(
             "INSERT INTO appointments (event_name, event_description, start_date, end_date, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)"
         );
 
-        $stmt->bind_param("ssssss", $course, $instructor, $start, $end, $startTime, $endTime);
+        $stmt->bind_param("ssssss", $eventName, $eventDesc, $start, $end, $startTime, $endTime);
 
         $stmt->execute();
 
@@ -42,12 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? '') === "edit"
     $startTime = $_POST["start_time"] ?? '';
     $endTime = $_POST["end_time"] ?? '';
 
-    if ($id && $course && $instructor && $start && $end) {
+    if ($id && $eventName && $eventDesc && $start && $end) {
         $stmt = $conn->prepare(
             "UPDATE appointments SET event_name = ?, event_description = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ? WHERE id = ?"
         );
 
-        $stmt->bind_param("ssssssi", $course, $instructor, $start, $end, $startTime, $endTime, $id);
+        $stmt->bind_param("ssssssi", $eventName, $eventDesc, $start, $end, $startTime, $endTime, $id);
 
         $stmt->execute();
 

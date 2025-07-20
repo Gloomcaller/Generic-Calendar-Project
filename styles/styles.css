@@ -46,16 +46,18 @@ header {
     color: var(--primary-dark);
     font-size: 2rem;
     font-weight: bold;
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     letter-spacing: 2px;
     border-bottom: 2px solid var(--primary);
-    width: 50%;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    border: 0.5rem rgb(80, 73, 73) solid;
+    border-radius: 100px;
 }
 
 @media (max-width: 768px) {

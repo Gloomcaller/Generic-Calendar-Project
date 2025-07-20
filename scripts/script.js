@@ -82,7 +82,7 @@ function renderCalendar(date = new Date()) {
 
         addBtn.className = "overlay-btn";
 
-        addBtn.textContent = "+ Add";
+        addBtn.textContent = "Add";
 
         addBtn.onclick = e => {
             e.stopPropagation();
