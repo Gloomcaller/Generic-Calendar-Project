@@ -11,8 +11,7 @@ include "./scripts/calendar.php";
     <title>Calendar</title>
     <meta name="description" content="Portfolio Calendar Project">
     <link rel="stylesheet" href="./styles/styles.css">
-    <!-- <link rel="icon" type="image/png" href="./favicon.png"> -->
-    <!-- Temp for now -->
+    <link rel="icon" type="image/png" href="./media/calendar-favicon.png">
 </head>
 
 <body>
@@ -33,10 +32,20 @@ include "./scripts/calendar.php";
 
     <div class="calendar">
         <div class="nav-btn-container">
-            <button class="nav-btn" onclick="changeMonth(-1)">⏮️</button>
+            <button class="nav-btn" onclick="changeMonth(-1)">
+                <img src="./media/arrow-left.png" alt="Previous">
+            </button>
+
             <h2 id="monthYear"></h2>
-            <button class="nav-btn" onclick="goToToday()">Today</button>
-            <button class="nav-btn" onclick="changeMonth(1)">⏭️</button>
+
+            <button class="nav-btn" onclick="goToToday()">
+                <img src="./media/today.png" alt="Today">
+            </button>
+
+            <button class="nav-btn" onclick="changeMonth(1)">
+                <img src="./media/arrow-right.png" alt="Next">
+            </button>
+
         </div>
 
         <div class="calendar-grid" id="calendar"></div>
@@ -44,8 +53,6 @@ include "./scripts/calendar.php";
 
     <div class="modal" id="eventModal">
         <div class="modal-content">
-
-
             <div id="eventSelectorWrapper">
                 <label for="eventSelector">
                     <strong>Select Event:</strong>
@@ -77,16 +84,17 @@ include "./scripts/calendar.php";
                 <label for="endTime">End Time:</label>
                 <input type="time" name="end_time" id="endTime" required>
 
-                <button type="submit">💾 Save</button>
+                <button type="submit"><img src="./media/save.png" alt="Save"> Save</button>
             </form>
 
             <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this event ?')">
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="event_id" id="deleteEventId">
-                <button type="submit" class="submit-btn">🗑️ Delete</button>
+                <button type="submit" class="submit-btn"><img src="./media/delete.png" alt="Delete"> Delete</button>
             </form>
 
-            <button type="button" class="submit-btn" onclick="closeModal()">❌ Cancel</button>
+            <button type="button" class="submit-btn" onclick="closeModal()"><img src="./media/cancel.png" alt="Cancel">
+                Cancel</button>
         </div>
     </div>
 

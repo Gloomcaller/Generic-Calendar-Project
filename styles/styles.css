@@ -29,6 +29,18 @@ header {
     text-align: center;
 }
 
+.nav-btn img {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
+}
+
+.modal-content img {
+    width: 1.3em;
+    height: 1.3em;
+    vertical-align: middle;
+}
+
 .clock-container {
     background-color: var(--primary-light);
     color: var(--primary-dark);
