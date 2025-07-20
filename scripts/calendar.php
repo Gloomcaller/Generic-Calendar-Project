@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['action'] ?? '') === "add")
 
     if ($course && $instructor && $start && $end) {
         $stmt = $conn->prepare(
-            "INSERT INTO appointments (course_name, instructor_name, start_date, end_date, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)"
+            "INSERT INTO appointments (event_name, event_description, start_date, end_date, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)"
         );
 
         $stmt->bind_param("ssssss", $course, $instructor, $start, $end, $startTime, $endTime);
@@ -35,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['action'] ?? '') === "add")
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? '') === "edit") {
     $id = $_POST["event_id"] ?? null;
-    $course = trim($_POST["course_name"] ?? '');
-    $instructor = trim($_POST["instructor_name"] ?? '');
+    $eventName = trim($_POST["event_name"] ?? '');
+    $eventDesc = trim($_POST["event_description"] ?? '');
     $start = $_POST["start_date"] ?? '';
     $end = $_POST["end_date"] ?? '';
     $startTime = $_POST["start_time"] ?? '';
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? '') === "edit"
 
     if ($id && $course && $instructor && $start && $end) {
         $stmt = $conn->prepare(
-            "UPDATE appointments SET course_name = ?, instructor_name = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ? WHERE id = ?"
+            "UPDATE appointments SET event_name = ?, event_description = ?, start_date = ?, end_date = ?, start_time = ?, end_time = ? WHERE id = ?"
         );
 
         $stmt->bind_param("ssssssi", $course, $instructor, $start, $end, $startTime, $endTime, $id);
@@ -97,7 +97,7 @@ if ($result && $result->num_rows > 0) {
         while ($start <= $end) {
             $eventsFromDB[] = [
                 "id" => $row["id"],
-                "title" => "{$row["course_name"]} - {$row["instructor_name"]}",
+                "title" => "{$row["event_name"]} - {$row["event_description"]}",
                 "date" => $start->format("d-m-Y"),
                 "start" => $row["start_date"],
                 "end" => $row["end_date"],

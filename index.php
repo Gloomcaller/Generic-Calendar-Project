@@ -59,11 +59,11 @@ include "./scripts/calendar.php";
                 <input id="formAction" type="hidden" name="action" value="add">
                 <input type="hidden" name="event_id" id="eventId">
 
-                <label for="courseName">Course Title:</label>
-                <input type="text" name="course_name" id="courseName" required>
+                <label for="eventName">Event Title:</label>
+                <input type="text" name="event_name" id="eventName" required>
 
-                <label for="instructorName">Instructor Name:</label>
-                <input type="text" name="instructor_name" id="instructorName" required>
+                <label for="eventDescription">Description:</label>
+                <input type="text" name="event_description" id="eventDescription" required>
 
                 <label for="startDate">Start Date:</label>
                 <input type="date" name="start_date" id="startDate" required>

@@ -56,21 +56,21 @@ function renderCalendar(date = new Date()) {
             const ev = document.createElement("div");
             ev.className = "event";
 
-            const courseEl = document.createElement("div");
-            courseEl.className = "course";
-            courseEl.textContent = event.title.split(" - ")[0];
+            const eventNameEl = document.createElement("div");
+            eventNameEl.className = "course";
+            eventNameEl.textContent = event.title.split(" - ")[0];
 
-            const instructorEl = document.createElement("div");
+            const eventDescEl = document.createElement("div");
 
-            instructorEl.className = "instructor";
-            instructorEl.textContent = event.title.split(" - ")[1];
+            eventDescEl.className = "instructor";
+            eventDescEl.textContent = event.title.split(" - ")[1];
 
             const timeEl = document.createElement("div");
             timeEl.className = "time";
             timeEl.textContent = event.start_time + " - " + event.end_time;
 
-            ev.appendChild(courseEl);
-            ev.appendChild(instructorEl);
+            ev.appendChild(eventNameEl);
+            ev.appendChild(eventDescEl);
             ev.appendChild(timeEl);
             eventBox.appendChild(ev);
         });
@@ -112,8 +112,8 @@ function openModalForAdd(dateStr) {
     document.getElementById("formAction").value = "add";
     document.getElementById("eventId").value = "";
     document.getElementById("deleteEventId").value = "";
-    document.getElementById("courseName").value = "";
-    document.getElementById("instructorName").value = "";
+    document.getElementById("eventName").value = "";
+    document.getElementById("eventDescription").value = "";
 
     const [day, month, year] = dateStr.split("-");
     const isoDate = `${year}-${month}-${day}`;
@@ -163,9 +163,9 @@ function handleEventSelection(eventJSON) {
     document.getElementById("eventId").value = event.id;
     document.getElementById("deleteEventId").value = event.id;
 
-    const [course, instructor] = event.title.split(" - ").map(e => e.trim());
-    document.getElementById("courseName").value = course || "";
-    document.getElementById("instructorName").value = instructor || "";
+    const [eventName, eventDesc] = event.title.split(" - ").map(e => e.trim());
+    document.getElementById("eventName").value = eventName || "";
+    document.getElementById("eventDescription").value = eventDesc || "";
     document.getElementById("startDate").value = event.start || "";
     document.getElementById("endDate").value = event.end || "";
     document.getElementById("startTime").value = event.start_time || "";

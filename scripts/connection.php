@@ -2,7 +2,7 @@
 
 $username = "root";
 
-$conn = new mysqli("localhost", $username, '', "calendar_databse");
+$conn = new mysqli("localhost", $username, '', "calendar_database");
 $conn->set_charset("utf8mb4");
 
 if ($conn->connect_error) {
