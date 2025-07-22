@@ -326,3 +326,66 @@ button.nav-btn {
 .overlay-btn:hover {
     background-color: var(--primary);
 }
+
+.wobbly-line {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: auto;
+    z-index: -1;
+}
+
+.wobbly-line.left {
+    left: 0;
+}
+
+.wobbly-line.right {
+    right: 0;
+    transform: scaleX(1);
+}
+
+.wobbly-line path.out-top {
+    fill: #00bbf9;
+}
+
+.wobbly-line path.in-top {
+    fill: #00f5d4;
+}
+
+.wobbly-line path.out-bottom {
+    fill: #00bbf9;
+}
+
+.wobbly-line path.in-bottom {
+    fill: #00f5d4;
+}
+
+@keyframes wobble-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.out-top {
+    animation: wobble-rotate 20s linear infinite;
+    transform-origin: 13px 25px;
+}
+
+.in-top {
+    animation: wobble-rotate 10s linear infinite;
+    transform-origin: 13px 25px;
+}
+
+.out-bottom {
+    animation: wobble-rotate 25s linear infinite;
+    transform-origin: 84px 93px;
+}
+
+.in-bottom {
+    animation: wobble-rotate 15s linear infinite;
+    transform-origin: 84px 93px;
+}
