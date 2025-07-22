@@ -29,10 +29,21 @@ include "./scripts/calendar.php";
     </svg>
 
     <header>
-        <h1>Calendar</h1>
+
+        <a href="https://github.com/Gloomcaller" class="nav-btn header-btn" target="_blank" rel="noopener">
+            <img src="./media/github.png" alt="GitHub">
+        </a>
+
         <div class="clock-container">
             <div id="clock"></div>
         </div>
+
+
+        <button class="nav-btn header-btn" id="darkModeToggle">
+            <!-- onclick="modeToggle()" ^^^^ will be added once the function works -->
+            <img src="./media/dark-mode.png" alt="Dark/Light Mode">
+        </button>
+
     </header>
 
     <?php if ($successMsg): ?>

@@ -23,10 +23,13 @@ body {
 }
 
 header {
-    background-color: var(--primary);
-    color: white;
     padding: 1.5rem 1rem;
     text-align: center;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 .nav-btn img {
@@ -42,22 +45,20 @@ header {
 }
 
 .clock-container {
+    width: 30%;
     background-color: var(--primary-light);
     color: var(--primary-dark);
     font-size: 2rem;
     font-weight: bold;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     letter-spacing: 2px;
-    border-bottom: 2px solid var(--primary);
-    width: 30%;
+    border: 0.5rem rgb(80, 73, 73) solid;
+    border-radius: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    border: 0.5rem rgb(80, 73, 73) solid;
-    border-radius: 100px;
 }
 
 @media (max-width: 768px) {
@@ -69,7 +70,7 @@ header {
 
 .calendar {
     max-width: 1000px;
-    margin: 2rem auto;
+    margin: 1rem auto;
     background-color: white;
     padding: 1.5rem;
     border-radius: 10px;
@@ -91,11 +92,6 @@ header {
     color: var(--primary-dark);
 }
 
-.nav-btn:hover {
-    color: var(--primary);
-    text-decoration: underline;
-}
-
 button.nav-btn img {
     display: block;
 }
@@ -105,6 +101,15 @@ button.nav-btn {
     background: none;
     text-decoration: none;
     cursor: pointer;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+}
+
+.header-btn img {
+    width: 4rem;
+    height: 4rem;
 }
 
 .calendar-grid {

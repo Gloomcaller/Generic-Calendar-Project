@@ -196,6 +196,10 @@ function updateClock() {
     ].join(":");
 }
 
+function modeToggle() {
+    //Will be added later.
+}
+
 renderCalendar(currDate);
 updateClock();
 setInterval(updateClock, 1000);
