@@ -59,6 +59,10 @@ include "./scripts/calendar.php";
                 <img src="./media/arrow-left.png" alt="Previous">
             </button>
 
+            <button class="nav-btn" onclick="quickSelect()">
+                <img src="./media/selector.png" alt="Today">
+            </button>
+
             <h2 id="monthYear"></h2>
 
             <button class="nav-btn" onclick="goToToday()">
@@ -117,6 +121,25 @@ include "./scripts/calendar.php";
 
             <button type="button" class="submit-btn" onclick="closeModal()"><img src="./media/cancel.png" alt="Cancel">
                 Cancel</button>
+        </div>
+    </div>
+
+    <div class="modal" id="quickSelectModal">
+        <div class="modal-content">
+            <h2>Select Month & Year</h2>
+
+            <label for="qs-month">Month:</label>
+            <select id="qs-month"></select>
+            <label for="qs-year">Year:</label>
+            <select id="qs-year"></select>
+
+            <button type="submit" onclick="submitQuickSelect()">
+                <img src="./media/go.png" alt="Cancel"> Go
+            </button>
+
+            <button type="button" class="submit-btn" onclick="closeQuickSelectModal()">
+                <img src="./media/cancel.png" alt="Cancel"> Cancel
+            </button>
         </div>
     </div>
 

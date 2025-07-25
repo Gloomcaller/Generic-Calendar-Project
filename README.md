@@ -27,6 +27,9 @@ It is designed for developers and students looking to learn or integrate a basic
 **Add/Edit Event Modal**  
 *(Will be added after style changes)*
 
+**Month & Year Quick Select**  
+*(Will be added after style changes)*
+
 ## Technologies Used
 
 - **Frontend:** HTML5, CSS3, JavaScript

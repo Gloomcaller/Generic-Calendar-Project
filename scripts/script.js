@@ -196,8 +196,55 @@ function updateClock() {
     ].join(":");
 }
 
+function quickSelect() {
+    const modal = document.getElementById('quickSelectModal');
+    const monthSelect = document.getElementById('qs-month');
+    const yearSelect = document.getElementById('qs-year');
+
+    if (monthSelect.children.length === 0) {
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        monthNames.forEach((month, index) => {
+            const option = document.createElement("option");
+            option.value = index;
+            option.textContent = month;
+            monthSelect.appendChild(option);
+        });
+    }
+
+    if (yearSelect.children.length === 0) {
+        for (let y = 2000; y <= 2050; y++) {
+            const option = document.createElement("option");
+            option.value = y;
+            option.textContent = y;
+            yearSelect.appendChild(option);
+        }
+    }
+
+    const now = new Date();
+    monthSelect.value = now.getMonth();
+    yearSelect.value = now.getFullYear();
+
+    modal.style.display = 'flex';
+}
+
+function submitQuickSelect() {
+    const selectedMonth = parseInt(document.getElementById("qs-month").value);
+    const selectedYear = parseInt(document.getElementById("qs-year").value);
+
+    currDate = new Date(selectedYear, selectedMonth, 1);
+    renderCalendar(currDate);
+    document.getElementById("quickSelectModal").style.display = "none";
+}
+
+function closeQuickSelectModal() {
+    document.getElementById("quickSelectModal").style.display = "none";
+}
+
 function modeToggle() {
-    //Will be added later.
+
 }
 
 renderCalendar(currDate);
