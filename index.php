@@ -39,8 +39,7 @@ include "./scripts/calendar.php";
         </div>
 
 
-        <button class="nav-btn header-btn" id="darkModeToggle">
-            <!-- onclick="modeToggle()" ^^^^ will be added once the function works -->
+        <button class="nav-btn header-btn" id="darkModeToggle" onclick="modeToggle()">
             <img src="./media/dark-mode.png" alt="Dark/Light Mode">
         </button>
 

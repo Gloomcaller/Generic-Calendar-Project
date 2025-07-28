@@ -4,8 +4,10 @@
     --primary-dark: #1E3A8A;
     --text: #333;
     --text-light: #f9f9f9;
+    --btn-fixed: #2145a8;
     --background: #F9FAFB;
     --background-white: #fff;
+    --today-highlight: #DBEAFE;
     --success: #D1FAE5;
     --success-text: #065F46;
     --error: #FEE2E2;
@@ -92,7 +94,7 @@ header {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--primary-dark);
+    color: var(--btn-fixed);
 }
 
 button.nav-btn img {
@@ -164,6 +166,7 @@ button.nav-btn {
     position: relative;
     cursor: pointer;
     transition: background 0.2s ease;
+    color: #333;
 }
 
 .day:hover {
@@ -171,7 +174,7 @@ button.nav-btn {
 }
 
 .day.today {
-    background: var(--primary-light);
+    background: var(--today-highlight);
     border-color: var(--primary-dark);
     cursor: pointer;
 }
@@ -253,7 +256,7 @@ button.nav-btn {
 }
 
 .modal-content {
-    background-color: white;
+    background-color: var(--background-white);
     padding: 2rem;
     border-radius: 10px;
     max-width: 420px;
@@ -287,7 +290,7 @@ button.nav-btn {
 }
 
 .modal-content button[type="submit"] {
-    background-color: var(--primary);
+    background-color: var(--btn-fixed);
     color: white;
 }
 
@@ -321,7 +324,7 @@ button.nav-btn {
 }
 
 .overlay-btn {
-    background: var(--primary-dark);
+    background: var(--btn-fixed);
     color: white;
     padding: 4px 8px;
     font-size: 12px;
@@ -426,4 +429,19 @@ button.nav-btn {
     color: white;
     cursor: pointer;
     font-size: 1rem;
+}
+
+body[data-theme="dark"] {
+    --primary: #60A5FA;
+    --primary-light: #1E293B;
+    --primary-dark: #93C5FD;
+    --text: #E5E7EB;
+    --text-light: #E5E7EB;
+    --background: #1F2937;
+    --background-white: #111827;
+    --today-highlight: #DBEAFE;
+    --success: #14532D;
+    --success-text: #D1FAE5;
+    --error: #7F1D1D;
+    --error-text: #FEE2E2;
 }

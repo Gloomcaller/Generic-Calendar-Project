@@ -3,6 +3,13 @@ const monthYearEl = document.getElementById("monthYear");
 const modalEl = document.getElementById("eventModal");
 let currDate = new Date();
 
+document.addEventListener('DOMContentLoaded', function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+    }
+});
+
 function renderCalendar(date = new Date()) {
     calendarEl.innerHTML = '';
 
@@ -244,7 +251,14 @@ function closeQuickSelectModal() {
 }
 
 function modeToggle() {
-
+    const currentTheme = document.body.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
 }
 
 renderCalendar(currDate);
