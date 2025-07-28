@@ -21,14 +21,23 @@ It is designed for developers and students looking to learn or integrate a basic
 
 ## Screenshots
 
-**Main Calendar View**  
-*(Will be added after style changes)*
+**Calendar Home Page**  
+![Calendar Home Page](./github/calendar-home.png)
 
-**Add/Edit Event Modal**  
-*(Will be added after style changes)*
+**CRUD Modal**  
+![CRUD Modal](./github/crud-modal.png)
 
-**Month & Year Quick Select**  
-*(Will be added after style changes)*
+**Quick Select Modal**  
+![Quick Select Modal](./github/quick-select-modal.png)
+
+**Calendar Home Page Dark Mode**  
+![Dark Mode Home](./github/dark-home.png)
+
+**CRUD Modal Dark Mode**  
+![Dark CRUD Modal](./github/dark-crud.png)
+
+**Quick Select Modal Dark Mode**  
+![Dark Quick Modal](./github/dark-quick.png)
 
 ## Technologies Used
 
@@ -61,13 +70,6 @@ http://localhost/Generic-Calendar-Project/index.php
 3. Click **Add** on a date to create an event.
 4. Click **Edit** on an existing event to modify or delete it.
 5. Use the **Today** button to return to the current month.
-
-## Known Issues / To-Do
-
-- Implement **year and month dropdown selectors** for faster navigation.
-- Improve **mobile scaling** for very small devices (< 360px).
-- Add a **dark mode** toggle.
-- Optimize database queries for large event sets.
 
 ## License
 
