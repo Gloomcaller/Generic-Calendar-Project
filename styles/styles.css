@@ -2,7 +2,10 @@
     --primary: #3B62F6;
     --primary-light: #DBEAFE;
     --primary-dark: #1E3A8A;
+    --text: #333;
+    --text-light: #f9f9f9;
     --background: #F9FAFB;
+    --background-white: #fff;
     --success: #D1FAE5;
     --success-text: #065F46;
     --error: #FEE2E2;
@@ -18,7 +21,7 @@
 body {
     font-family: 'Courier New', Courier, monospace;
     background-color: var(--background);
-    color: #333;
+    color: var(--text);
     line-height: 1.5;
 }
 
@@ -71,7 +74,7 @@ header {
 .calendar {
     max-width: 1000px;
     margin: 1rem auto;
-    background-color: white;
+    background-color: var(--background-white);
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -349,20 +352,14 @@ button.nav-btn {
     transform: scaleX(1);
 }
 
-.wobbly-line path.out-top {
-    fill: #00bbf9;
-}
-
-.wobbly-line path.in-top {
-    fill: #00f5d4;
-}
-
+.wobbly-line path.out-top,
 .wobbly-line path.out-bottom {
     fill: #00bbf9;
 }
 
+.wobbly-line path.in-top,
 .wobbly-line path.in-bottom {
-    fill: #00f5d4;
+    fill: #FFF587;
 }
 
 @keyframes wobble-rotate {
@@ -396,25 +393,25 @@ button.nav-btn {
 }
 
 #quickSelectModal .modal-content {
-    background-color: #2c2f33;
-    border: 1px solid #444;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    color: #fff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: var(--background-white);
+    color: var(--text);
+    border: 1px solid #E5E7EB;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 #quickSelectModal select {
-    padding: 8px;
-    font-size: 16px;
-    background-color: #3a3d42;
-    color: #fff;
-    border: 1px solid #555;
-    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: var(--background);
+    color: var(--text);
+    border: 1px solid #CCC;
+    border-radius: 5px;
 }
 
 #quickSelectModal button.submit-btn {
@@ -424,9 +421,9 @@ button.nav-btn {
     gap: 6px;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     background-color: crimson;
     color: white;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
 }
