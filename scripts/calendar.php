@@ -95,14 +95,16 @@ if ($result && $result->num_rows > 0) {
         $end = new DateTime($row["end_date"]);
 
         while ($start <= $end) {
+
             $eventsFromDB[] = [
                 "id" => $row["id"],
-                "title" => "{$row["event_name"]} - {$row["event_description"]}",
+                "title" => $row["event_name"],
                 "date" => $start->format("d-m-Y"),
                 "start" => $row["start_date"],
                 "end" => $row["end_date"],
                 "start_time" => $row["start_time"],
-                "end_time" => $row["end_time"]
+                "end_time" => $row["end_time"],
+                "description" => $row["event_description"]
             ];
 
             $start->modify("+1 day");

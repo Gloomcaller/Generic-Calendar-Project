@@ -124,6 +124,13 @@ button.nav-btn {
     gap: 2px;
 }
 
+.calendar-grid .event {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    display: block;
+}
+
 @media (max-width: 1024px) {
     .calendar-grid {
         grid-template-columns: repeat(7, minmax(80px, 1fr));

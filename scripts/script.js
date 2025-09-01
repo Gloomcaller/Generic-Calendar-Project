@@ -64,12 +64,12 @@ function renderCalendar(date = new Date()) {
             ev.className = "event";
 
             const eventNameEl = document.createElement("div");
-            eventNameEl.className = "course";
+            eventNameEl.className = "eventName";
             eventNameEl.textContent = event.title.split(" - ")[0];
 
             const eventDescEl = document.createElement("div");
 
-            eventDescEl.className = "instructor";
+            eventDescEl.className = "eventDescription";
             eventDescEl.textContent = event.title.split(" - ")[1];
 
             const timeEl = document.createElement("div");
@@ -260,6 +260,17 @@ function modeToggle() {
         localStorage.setItem('theme', 'dark');
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const alert = document.querySelector(".alert");
+    if (alert) {
+        setTimeout(() => {
+            alert.style.opacity = "0";
+            alert.style.transition = "opacity 0.5s ease";
+            setTimeout(() => alert.remove(), 500);
+        }, 4000);
+    }
+});
 
 renderCalendar(currDate);
 updateClock();
