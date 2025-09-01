@@ -15,6 +15,61 @@ include "./scripts/calendar.php";
 </head>
 
 <body>
+
+    <div id="leftSidebar" class="sidebar left">
+        <button class="close-btn" onclick="closeSidebar('left')">&times;</button>
+        <div class="sidebar-content">
+            <div id="left-eventDetails" class="sidebar-section active">
+                <h2>Event Details</h2>
+                <p>Select an event to view details here.</p>
+            </div>
+            <div id="left-faq" class="sidebar-section">
+                <h2>FAQ</h2>
+                <p>FAQ goes here.</p>
+            </div>
+            <div id="left-settings" class="sidebar-section">
+                <h2>Settings</h2>
+                <p>Settings go here.</p>
+            </div>
+        </div>
+
+        <div class="sidebar-tabs left-tabs">
+            <button onclick="showSidebarSection('left','left-eventDetails')">📅</button>
+            <button onclick="showSidebarSection('left','left-faq')">❓</button>
+            <button onclick="showSidebarSection('left','left-settings')">⚙️</button>
+        </div>
+    </div>
+
+    <div id="rightSidebar" class="sidebar right">
+        <button class="close-btn" onclick="closeSidebar('right')">&times;</button>
+        <div class="sidebar-content">
+            <div id="right-extra" class="sidebar-section active">
+                <h2>Extras</h2>
+                <p>Extra project features here.</p>
+            </div>
+            <div id="right-gallery" class="sidebar-section">
+                <h2>Gallery</h2>
+                <p>Images / Sliders here.</p>
+            </div>
+            <div id="right-downloads" class="sidebar-section">
+                <h2>Downloads</h2>
+                <p>Downloadable files here.</p>
+            </div>
+        </div>
+        <div class="sidebar-tabs right-tabs">
+            <button onclick="showSidebarSection('right','right-extra')">⭐</button>
+            <button onclick="showSidebarSection('right','right-gallery')">🖼️</button>
+            <button onclick="showSidebarSection('right','right-downloads')">⬇️</button>
+        </div>
+    </div>
+
+    <div class="sidebar-toggle left-toggle">
+        <button onclick="openSidebar('left')">☰</button>
+    </div>
+    <div class="sidebar-toggle right-toggle">
+        <button onclick="openSidebar('right')">☰</button>
+    </div>
+
     <svg class="wobbly-line left" preserveAspectRatio="xMidYMid slice" viewBox="10 10 80 80">
         <path class="out-top"
             d="M37-5C25.1-14.7,5.7-19.1-9.2-10-28.5,1.8-32.7,31.1-19.8,49c15.5,21.5,52.6,22,67.2,2.3C59.4,35,53.7,8.5,37-5Z" />

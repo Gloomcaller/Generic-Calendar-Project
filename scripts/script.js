@@ -261,6 +261,30 @@ function modeToggle() {
     }
 }
 
+function openSidebar(side) {
+    document.getElementById(side + "Sidebar").style.width = "350px";
+}
+
+function closeSidebar(side) {
+    document.getElementById(side + "Sidebar").style.width = "0";
+}
+
+function showSidebarSection(side, sectionId) {
+    document.querySelectorAll("#" + side + "Sidebar .sidebar-section").forEach(sec => {
+        sec.classList.remove("active");
+    });
+    document.getElementById(sectionId).classList.add("active");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".calendar-day.has-event").forEach(cell => {
+        cell.addEventListener("click", () => {
+            openSidebar("left");
+            showSidebarSection("left", "left-eventDetails");
+        });
+    });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const alert = document.querySelector(".alert");
     if (alert) {

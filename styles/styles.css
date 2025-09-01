@@ -127,7 +127,7 @@ button.nav-btn {
 .calendar-grid .event {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
     display: block;
 }
 
@@ -451,4 +451,117 @@ body[data-theme="dark"] {
     --success-text: #D1FAE5;
     --error: #7F1D1D;
     --error-text: #FEE2E2;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    background-color: rgba(30, 30, 30, 0.95);
+    color: var(--text-color);
+    overflow-x: hidden;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar.left {
+    left: 0;
+    flex-direction: row;
+}
+
+.sidebar.left .sidebar-tabs {
+    order: 2;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar.right {
+    right: 0;
+    flex-direction: row-reverse;
+}
+
+.sidebar.right .sidebar-tabs {
+    order: 2;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-content {
+    flex: 1;
+    padding: 60px 20px 20px;
+    overflow-y: auto;
+}
+
+.sidebar .close-btn {
+    position: absolute;
+    top: 10px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.sidebar.left .close-btn {
+    right: 10px;
+}
+
+.sidebar.right .close-btn {
+    left: 10px;
+}
+
+.sidebar-tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    background: var(--accent-color);
+}
+
+.sidebar-tabs button {
+    background: none;
+    border: none;
+    font-size: 22px;
+    margin: 15px 0;
+    cursor: pointer;
+    color: var(--bg-color);
+    transition: transform 0.2s;
+}
+
+.sidebar-tabs button:hover {
+    transform: scale(1.2);
+}
+
+.sidebar-section {
+    display: none;
+}
+
+.sidebar-section.active {
+    display: block;
+}
+
+.sidebar-toggle {
+    position: fixed;
+    bottom: 20px;
+    z-index: 1100;
+}
+
+.left-toggle {
+    left: 20px;
+}
+
+.right-toggle {
+    right: 20px;
+}
+
+.sidebar-toggle button {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
 }
