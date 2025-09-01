@@ -16,58 +16,119 @@ include "./scripts/calendar.php";
 
 <body>
 
+    <div class="sidebar-toggle left-toggle">
+        <button onclick="toggleSidebar('left')">
+            <img src="./media/menu.png" alt="Menu" />
+        </button>
+    </div>
+
+
     <div id="leftSidebar" class="sidebar left">
-        <button class="close-btn" onclick="closeSidebar('left')">&times;</button>
         <div class="sidebar-content">
-            <div id="left-eventDetails" class="sidebar-section active">
-                <h2>Event Details</h2>
-                <p>Select an event to view details here.</p>
-            </div>
-            <div id="left-faq" class="sidebar-section">
+            <div id="left-faq" class="sidebar-section active">
                 <h2>FAQ</h2>
-                <p>FAQ goes here.</p>
+                <p>FAQ content goes here.</p>
             </div>
-            <div id="left-settings" class="sidebar-section">
-                <h2>Settings</h2>
-                <p>Settings go here.</p>
+            <div id="left-gallery" class="sidebar-section">
+                <h2>Gallery</h2>
+                <p>Gallery content here.</p>
+            </div>
+            <div id="left-video" class="sidebar-section">
+                <h2>Video</h2>
+                <video controls width="100%">
+                    <source src="sample.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div id="left-gif" class="sidebar-section">
+                <h2>GIF</h2>
+                <img src="sample.gif" alt="GIF demo" style="max-width:100%;">
+            </div>
+            <div id="left-slider" class="sidebar-section">
+                <h2>Slider</h2>
+                <div class="slider">Slider content here.</div>
+            </div>
+            <div id="left-marquee" class="sidebar-section">
+                <h2>Marquee</h2>
+                <marquee>Scrolling text example</marquee>
+            </div>
+            <div id="left-forum" class="sidebar-section">
+                <h2>Forum</h2>
+                <p>Forum/discussion placeholder.</p>
+            </div>
+            <div id="left-chat" class="sidebar-section">
+                <h2>Chat</h2>
+                <p>Chat placeholder.</p>
+            </div>
+            <div id="left-mailing" class="sidebar-section">
+                <h2>Mailing List</h2>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div id="left-downloads" class="sidebar-section">
+                <h2>Downloads</h2>
+                <a href="file.pdf" download>Download Sample File</a>
             </div>
         </div>
 
-        <div class="sidebar-tabs left-tabs">
-            <button onclick="showSidebarSection('left','left-eventDetails')">📅</button>
-            <button onclick="showSidebarSection('left','left-faq')">❓</button>
-            <button onclick="showSidebarSection('left','left-settings')">⚙️</button>
+        <div class="sidebar-tabs">
+            <button onclick="toggleSidebar('left','left-faq')">FAQ</button>
+            <button onclick="toggleSidebar('left','left-gallery')">Gallery</button>
+            <button onclick="toggleSidebar('left','left-video')">Video</button>
+            <button onclick="toggleSidebar('left','left-gif')">GIF</button>
+            <button onclick="toggleSidebar('left','left-slider')">Slider</button>
+            <button onclick="toggleSidebar('left','left-marquee')">Marquee</button>
+            <button onclick="toggleSidebar('left','left-forum')">Forum</button>
+            <button onclick="toggleSidebar('left','left-chat')">Chat</button>
+            <button onclick="toggleSidebar('left','left-mailing')">Mail</button>
+            <button onclick="toggleSidebar('left','left-downloads')">Download</button>
         </div>
+    </div>
+
+    <div class="sidebar-toggle">
+        <button onclick="toggleSidebar('right')">
+            <img src="./media/menu.png" alt="Menu" />
+        </button>
     </div>
 
     <div id="rightSidebar" class="sidebar right">
-        <button class="close-btn" onclick="closeSidebar('right')">&times;</button>
         <div class="sidebar-content">
-            <div id="right-extra" class="sidebar-section active">
-                <h2>Extras</h2>
-                <p>Extra project features here.</p>
+            <div id="right-eventDetails" class="sidebar-section active">
+                <h2>Event Details</h2>
+                <p>Select an event to view details here.</p>
             </div>
-            <div id="right-gallery" class="sidebar-section">
-                <h2>Gallery</h2>
-                <p>Images / Sliders here.</p>
+            <div id="right-search" class="sidebar-section">
+                <h2>Search Events</h2>
+                <input type="text" id="eventSearch" placeholder="Search by title">
+                <div id="searchResults"></div>
             </div>
-            <div id="right-downloads" class="sidebar-section">
-                <h2>Downloads</h2>
-                <p>Downloadable files here.</p>
+            <div id="right-export" class="sidebar-section">
+                <h2>Export</h2>
+                <button onclick="exportEventsCSV()">Export Events to CSV</button>
+            </div>
+            <div id="right-stats" class="sidebar-section">
+                <h2>Stats</h2>
+                <ul>
+                    <li>Views: <span id="statViews">0</span></li>
+                    <li>Added: <span id="statAdded">0</span></li>
+                    <li>Deleted: <span id="statDeleted">0</span></li>
+                    <li>Downloads: <span id="statDownloads">0</span></li>
+                </ul>
+            </div>
+            <div id="right-settings" class="sidebar-section">
+                <h2>Settings</h2>
+                <p>Settings placeholder.</p>
             </div>
         </div>
-        <div class="sidebar-tabs right-tabs">
-            <button onclick="showSidebarSection('right','right-extra')">⭐</button>
-            <button onclick="showSidebarSection('right','right-gallery')">🖼️</button>
-            <button onclick="showSidebarSection('right','right-downloads')">⬇️</button>
-        </div>
-    </div>
 
-    <div class="sidebar-toggle left-toggle">
-        <button onclick="openSidebar('left')">☰</button>
-    </div>
-    <div class="sidebar-toggle right-toggle">
-        <button onclick="openSidebar('right')">☰</button>
+        <div class="sidebar-tabs">
+            <button onclick="toggleSidebar('right','right-eventDetails')">Event</button>
+            <button onclick="toggleSidebar('right','right-search')">Search</button>
+            <button onclick="toggleSidebar('right','right-export')">Export</button>
+            <button onclick="toggleSidebar('right','right-stats')">Stats</button>
+            <button onclick="toggleSidebar('right','right-settings')">Settings</button>
+        </div>
     </div>
 
     <svg class="wobbly-line left" preserveAspectRatio="xMidYMid slice" viewBox="10 10 80 80">

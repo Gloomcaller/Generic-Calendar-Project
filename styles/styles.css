@@ -454,98 +454,39 @@ body[data-theme="dark"] {
 }
 
 .sidebar {
-    height: 100%;
-    width: 0;
     position: fixed;
     top: 0;
-    background-color: rgba(30, 30, 30, 0.95);
-    color: var(--text-color);
-    overflow-x: hidden;
-    transition: 0.3s;
+    bottom: 0;
+    width: 300px;
+    background-color: rgba(var(--sidebar-rgb, 249, 250, 251), 0.95);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
     z-index: 1000;
-    display: flex;
-    flex-direction: row;
+    overflow-y: auto;
 }
 
 .sidebar.left {
     left: 0;
-    flex-direction: row;
-}
-
-.sidebar.left .sidebar-tabs {
-    order: 2;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
 }
 
 .sidebar.right {
     right: 0;
-    flex-direction: row-reverse;
+    transform: translateX(100%);
 }
 
-.sidebar.right .sidebar-tabs {
-    order: 2;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+.sidebar.open {
+    transform: translateX(0);
 }
 
 .sidebar-content {
-    flex: 1;
-    padding: 60px 20px 20px;
-    overflow-y: auto;
-}
-
-.sidebar .close-btn {
-    position: absolute;
-    top: 10px;
-    font-size: 30px;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-}
-
-.sidebar.left .close-btn {
-    right: 10px;
-}
-
-.sidebar.right .close-btn {
-    left: 10px;
-}
-
-.sidebar-tabs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 80px;
-    background: var(--accent-color);
-}
-
-.sidebar-tabs button {
-    background: none;
-    border: none;
-    font-size: 22px;
-    margin: 15px 0;
-    cursor: pointer;
-    color: var(--bg-color);
-    transition: transform 0.2s;
-}
-
-.sidebar-tabs button:hover {
-    transform: scale(1.2);
-}
-
-.sidebar-section {
-    display: none;
-}
-
-.sidebar-section.active {
-    display: block;
+    padding: 1rem;
 }
 
 .sidebar-toggle {
     position: fixed;
-    bottom: 20px;
-    z-index: 1100;
+    top: 20px;
+    z-index: 2000;
 }
 
 .left-toggle {
@@ -557,11 +498,64 @@ body[data-theme="dark"] {
 }
 
 .sidebar-toggle button {
-    background-color: var(--accent-color);
-    color: var(--bg-color);
+    background: var(--primary);
     border: none;
-    padding: 10px 15px;
+    padding: 8px;
+    border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
-    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.sidebar-toggle button img {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar-toggle button:hover {
+    background: var(--primary-dark);
+}
+
+.sidebar-tabs {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1100;
+}
+
+.left-tabs {
+    right: -50px;
+}
+
+.right-tabs {
+    left: -50px;
+}
+
+.sidebar-tabs button {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background 0.2s ease;
+}
+
+.sidebar-tabs button img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.sidebar-tabs button:hover {
+    background: var(--primary-dark);
 }

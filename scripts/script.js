@@ -261,30 +261,6 @@ function modeToggle() {
     }
 }
 
-function openSidebar(side) {
-    document.getElementById(side + "Sidebar").style.width = "350px";
-}
-
-function closeSidebar(side) {
-    document.getElementById(side + "Sidebar").style.width = "0";
-}
-
-function showSidebarSection(side, sectionId) {
-    document.querySelectorAll("#" + side + "Sidebar .sidebar-section").forEach(sec => {
-        sec.classList.remove("active");
-    });
-    document.getElementById(sectionId).classList.add("active");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".calendar-day.has-event").forEach(cell => {
-        cell.addEventListener("click", () => {
-            openSidebar("left");
-            showSidebarSection("left", "left-eventDetails");
-        });
-    });
-});
-
 document.addEventListener("DOMContentLoaded", () => {
     const alert = document.querySelector(".alert");
     if (alert) {
@@ -294,6 +270,42 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => alert.remove(), 500);
         }, 4000);
     }
+});
+
+function toggleSidebar(side, sectionId) {
+    const sidebar = document.getElementById(side + "Sidebar");
+    const sections = sidebar.querySelectorAll(".sidebar-section");
+
+    const isOpen = sidebar.classList.contains("open");
+
+    if (!sectionId) {
+        sidebar.classList.toggle("open");
+        return;
+    }
+
+    if (!isOpen) sidebar.classList.add("open");
+
+    sections.forEach(sec => sec.classList.remove("active"));
+    const activeSection = document.getElementById(sectionId);
+    if (activeSection) activeSection.classList.add("active");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".sidebar-toggle button").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const side = btn.closest(".sidebar-toggle").classList.contains("left-toggle") ? "left" : "right";
+            toggleSidebar(side);
+        });
+    });
+
+    document.querySelectorAll(".sidebar-tabs button").forEach(tabBtn => {
+        tabBtn.addEventListener("click", () => {
+            const parentSidebar = tabBtn.closest(".sidebar");
+            const side = parentSidebar.classList.contains("left") ? "left" : "right";
+            const sectionId = tabBtn.dataset.section;
+            toggleSidebar(side, sectionId);
+        });
+    });
 });
 
 renderCalendar(currDate);
