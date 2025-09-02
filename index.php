@@ -62,7 +62,9 @@ include "./scripts/calendar.php";
             <div class="sidebar-logo">
                 <img src="./media/calendar.png" alt="Logo">
             </div>
-
+            <p class="sidebar-heading">
+                Calendar Project
+            </p>
             <p class="sidebar-description">
                 Responsive calendar app with event management (CRUD), built in PHP/MySQL + JS. Features live clock,
                 modals, and user friendly UI.
@@ -85,23 +87,25 @@ include "./scripts/calendar.php";
                 <img src="./media/Calendar-Winter.png" alt="Gallery Image 3">
             </div>
 
-            <div class="sidebar-faq">
-                <button class="accordion">What is this project?</button>
-                <div class="panel">
-                    <p>A simple calendar with extra features.</p>
+            <p class="sidebar-heading">
+                FAQ
+            </p>
+            <div class="faq">
+                <button class="btn faq-question">How do I add an event?</button>
+                <div class="faq-answer">
+                    <p>Click the "Add Event" button above the calendar, fill in the details, and save.</p>
                 </div>
 
-                <button class="accordion">How do I Add/Delete/Edit events?</button>
-                <div class="panel">
-                    <p>Use the event form on the main page and select the Add or Edit button.</p>
+                <button class="btn faq-question">Can I edit or delete events?</button>
+                <div class="faq-answer">
+                    <p>Yes. Click an existing event on the calendar to edit or delete it.</p>
                 </div>
 
-                <button class="accordion">Can I download my events?</button>
-                <div class="panel">
-                    <p>Yes, with the export button in the right sidebar.</p>
+                <button class="btn faq-question">How do I export my calendar?</button>
+                <div class="faq-answer">
+                    <p>Use the "Export CSV" option in the right sidebar to download your events.</p>
                 </div>
             </div>
-
         </div>
     </div>
 

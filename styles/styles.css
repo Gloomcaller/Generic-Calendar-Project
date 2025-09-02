@@ -469,7 +469,7 @@ body[data-theme="dark"] {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 280px;
+    width: 350px;
     background-color: rgba(240, 240, 240, 0.95);
     color: black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -500,7 +500,7 @@ body.dark-mode .sidebar {
 
 .sidebar-logo img {
     width: 100%;
-    max-height: 120px;
+    max-height: 100px;
     object-fit: contain;
     margin-bottom: 1rem;
 }
@@ -630,4 +630,31 @@ body.dark-mode .sidebar-heading {
 body[data-theme="dark"] .sidebar {
     background-color: rgba(30, 30, 30, 0.9);
     color: var(--text-light);
+}
+
+.faq-question {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.faq-answer {
+    display: none;
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.faq-question:hover {
+    background: var(--primary-dark);
 }

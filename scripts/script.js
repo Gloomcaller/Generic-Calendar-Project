@@ -277,6 +277,14 @@ function toggleSidebar(side) {
     sidebar.classList.toggle("open");
 }
 
+document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+        const answer = button.nextElementSibling;
+        answer.style.display =
+            answer.style.display === "block" ? "none" : "block";
+    });
+});
+
 renderCalendar(currDate);
 updateClock();
 setInterval(updateClock, 1000);
