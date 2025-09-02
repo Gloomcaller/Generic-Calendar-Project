@@ -57,26 +57,84 @@ include "./scripts/calendar.php";
     </header>
 
     <div id="leftSidebar" class="sidebar left">
-        <div class="sidebar-tabs left-tabs">
-            <button><img src="./media/faq.png" alt="FAQ"></button>
-            <button><img src="./media/gallery.png" alt="Gallery"></button>
-            <button><img src="./media/settings.png" alt="Settings"></button>
-        </div>
         <div class="sidebar-content">
-            <h2>General</h2>
-            <p>Content for FAQ, gallery, etc.</p>
+
+            <div class="sidebar-logo">
+                <img src="./media/calendar.png" alt="Logo">
+            </div>
+
+            <p class="sidebar-description">
+                Responsive calendar app with event management (CRUD), built in PHP/MySQL + JS. Features live clock,
+                modals, and user friendly UI.
+            </p>
+
+            <h3 class="sidebar-heading">Brief history of calendars</h3>
+            <div class="sidebar-slider">
+                <div class="slide active">Calendars have existed since ancient times...</div>
+                <div class="slide">The Gregorian calendar was introduced in 1582...</div>
+                <div class="slide">Other calendars include lunar, solar, and lunisolar...</div>
+            </div>
+
+            <p class="sidebar-heading">
+                Example of video game calendars
+            </p>
+            <div class="sidebar-gallery">
+                <img src="./media/Calendar-Spring.png" alt="Gallery Image 1">
+                <img src="./media/Calendar-Summer.png" alt="Gallery Image 2">
+                <img src="./media/Calendar-Fall.png" alt="Gallery Image 3">
+                <img src="./media/Calendar-Winter.png" alt="Gallery Image 3">
+            </div>
+
+            <div class="sidebar-faq">
+                <button class="accordion">What is this project?</button>
+                <div class="panel">
+                    <p>A simple calendar with extra features.</p>
+                </div>
+
+                <button class="accordion">How do I Add/Delete/Edit events?</button>
+                <div class="panel">
+                    <p>Use the event form on the main page and select the Add or Edit button.</p>
+                </div>
+
+                <button class="accordion">Can I download my events?</button>
+                <div class="panel">
+                    <p>Yes, with the export button in the right sidebar.</p>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <div id="rightSidebar" class="sidebar right">
-        <div class="sidebar-tabs right-tabs">
-            <button><img src="./media/search.png" alt="Search"></button>
-            <button><img src="./media/export.png" alt="Export CSV"></button>
-            <button><img src="./media/stats.png" alt="Stats"></button>
-        </div>
         <div class="sidebar-content">
-            <h2>Calendar Tools</h2>
-            <p>Search, export, stats here.</p>
+
+            <div class="sidebar-marquee">
+                <marquee behavior="scroll" direction="left">
+                    Upcoming: Meeting (Sept 5) • Exam (Sept 7) • Birthday (Sept 10)
+                </marquee>
+            </div>
+
+            <div class="sidebar-counters">
+                <p><strong>Visits:</strong> 0</p>
+                <p><strong>Events Added:</strong> 0</p>
+                <p><strong>Events Edited:</strong> 0</p>
+                <p><strong>Events Deleted:</strong> 0</p>
+                <p><strong>Downloads:</strong> 0</p>
+            </div>
+
+            <div class="sidebar-search">
+                <input type="text" id="searchInput" placeholder="Search events...">
+            </div>
+
+            <div class="sidebar-export">
+                <button id="exportCSV">Download CSV</button>
+            </div>
+
+            <div class="sidebar-details">
+                <h3>Event Details</h3>
+                <p>Select an event to see details here.</p>
+            </div>
+
         </div>
     </div>
 
