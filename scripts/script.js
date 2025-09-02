@@ -272,41 +272,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function toggleSidebar(side, sectionId) {
+function toggleSidebar(side) {
     const sidebar = document.getElementById(side + "Sidebar");
-    const sections = sidebar.querySelectorAll(".sidebar-section");
-
-    const isOpen = sidebar.classList.contains("open");
-
-    if (!sectionId) {
-        sidebar.classList.toggle("open");
-        return;
-    }
-
-    if (!isOpen) sidebar.classList.add("open");
-
-    sections.forEach(sec => sec.classList.remove("active"));
-    const activeSection = document.getElementById(sectionId);
-    if (activeSection) activeSection.classList.add("active");
+    sidebar.classList.toggle("open");
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".sidebar-toggle button").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const side = btn.closest(".sidebar-toggle").classList.contains("left-toggle") ? "left" : "right";
-            toggleSidebar(side);
-        });
-    });
-
-    document.querySelectorAll(".sidebar-tabs button").forEach(tabBtn => {
-        tabBtn.addEventListener("click", () => {
-            const parentSidebar = tabBtn.closest(".sidebar");
-            const side = parentSidebar.classList.contains("left") ? "left" : "right";
-            const sectionId = tabBtn.dataset.section;
-            toggleSidebar(side, sectionId);
-        });
-    });
-});
 
 renderCalendar(currDate);
 updateClock();

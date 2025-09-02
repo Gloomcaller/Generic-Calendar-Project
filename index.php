@@ -15,122 +15,6 @@ include "./scripts/calendar.php";
 </head>
 
 <body>
-
-    <div class="sidebar-toggle left-toggle">
-        <button onclick="toggleSidebar('left')">
-            <img src="./media/menu.png" alt="Menu" />
-        </button>
-    </div>
-
-
-    <div id="leftSidebar" class="sidebar left">
-        <div class="sidebar-content">
-            <div id="left-faq" class="sidebar-section active">
-                <h2>FAQ</h2>
-                <p>FAQ content goes here.</p>
-            </div>
-            <div id="left-gallery" class="sidebar-section">
-                <h2>Gallery</h2>
-                <p>Gallery content here.</p>
-            </div>
-            <div id="left-video" class="sidebar-section">
-                <h2>Video</h2>
-                <video controls width="100%">
-                    <source src="sample.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div id="left-gif" class="sidebar-section">
-                <h2>GIF</h2>
-                <img src="sample.gif" alt="GIF demo" style="max-width:100%;">
-            </div>
-            <div id="left-slider" class="sidebar-section">
-                <h2>Slider</h2>
-                <div class="slider">Slider content here.</div>
-            </div>
-            <div id="left-marquee" class="sidebar-section">
-                <h2>Marquee</h2>
-                <marquee>Scrolling text example</marquee>
-            </div>
-            <div id="left-forum" class="sidebar-section">
-                <h2>Forum</h2>
-                <p>Forum/discussion placeholder.</p>
-            </div>
-            <div id="left-chat" class="sidebar-section">
-                <h2>Chat</h2>
-                <p>Chat placeholder.</p>
-            </div>
-            <div id="left-mailing" class="sidebar-section">
-                <h2>Mailing List</h2>
-                <form>
-                    <input type="email" placeholder="Enter your email">
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-            <div id="left-downloads" class="sidebar-section">
-                <h2>Downloads</h2>
-                <a href="file.pdf" download>Download Sample File</a>
-            </div>
-        </div>
-
-        <div class="sidebar-tabs">
-            <button onclick="toggleSidebar('left','left-faq')">FAQ</button>
-            <button onclick="toggleSidebar('left','left-gallery')">Gallery</button>
-            <button onclick="toggleSidebar('left','left-video')">Video</button>
-            <button onclick="toggleSidebar('left','left-gif')">GIF</button>
-            <button onclick="toggleSidebar('left','left-slider')">Slider</button>
-            <button onclick="toggleSidebar('left','left-marquee')">Marquee</button>
-            <button onclick="toggleSidebar('left','left-forum')">Forum</button>
-            <button onclick="toggleSidebar('left','left-chat')">Chat</button>
-            <button onclick="toggleSidebar('left','left-mailing')">Mail</button>
-            <button onclick="toggleSidebar('left','left-downloads')">Download</button>
-        </div>
-    </div>
-
-    <div class="sidebar-toggle">
-        <button onclick="toggleSidebar('right')">
-            <img src="./media/menu.png" alt="Menu" />
-        </button>
-    </div>
-
-    <div id="rightSidebar" class="sidebar right">
-        <div class="sidebar-content">
-            <div id="right-eventDetails" class="sidebar-section active">
-                <h2>Event Details</h2>
-                <p>Select an event to view details here.</p>
-            </div>
-            <div id="right-search" class="sidebar-section">
-                <h2>Search Events</h2>
-                <input type="text" id="eventSearch" placeholder="Search by title">
-                <div id="searchResults"></div>
-            </div>
-            <div id="right-export" class="sidebar-section">
-                <h2>Export</h2>
-                <button onclick="exportEventsCSV()">Export Events to CSV</button>
-            </div>
-            <div id="right-stats" class="sidebar-section">
-                <h2>Stats</h2>
-                <ul>
-                    <li>Views: <span id="statViews">0</span></li>
-                    <li>Added: <span id="statAdded">0</span></li>
-                    <li>Deleted: <span id="statDeleted">0</span></li>
-                    <li>Downloads: <span id="statDownloads">0</span></li>
-                </ul>
-            </div>
-            <div id="right-settings" class="sidebar-section">
-                <h2>Settings</h2>
-                <p>Settings placeholder.</p>
-            </div>
-        </div>
-
-        <div class="sidebar-tabs">
-            <button onclick="toggleSidebar('right','right-eventDetails')">Event</button>
-            <button onclick="toggleSidebar('right','right-search')">Search</button>
-            <button onclick="toggleSidebar('right','right-export')">Export</button>
-            <button onclick="toggleSidebar('right','right-stats')">Stats</button>
-            <button onclick="toggleSidebar('right','right-settings')">Settings</button>
-        </div>
-    </div>
-
     <svg class="wobbly-line left" preserveAspectRatio="xMidYMid slice" viewBox="10 10 80 80">
         <path class="out-top"
             d="M37-5C25.1-14.7,5.7-19.1-9.2-10-28.5,1.8-32.7,31.1-19.8,49c15.5,21.5,52.6,22,67.2,2.3C59.4,35,53.7,8.5,37-5Z" />
@@ -146,6 +30,12 @@ include "./scripts/calendar.php";
 
     <header>
 
+        <div class="nav-btn header-btn">
+            <button onclick="toggleSidebar('left')">
+                <img src="./media/menu.png" alt="Left Sidebar">
+            </button>
+        </div>
+
         <a href="https://github.com/Gloomcaller" class="nav-btn header-btn" target="_blank" rel="noopener">
             <img src="./media/github.png" alt="GitHub">
         </a>
@@ -154,12 +44,41 @@ include "./scripts/calendar.php";
             <div id="clock"></div>
         </div>
 
-
         <button class="nav-btn header-btn" id="darkModeToggle" onclick="modeToggle()">
             <img src="./media/dark-mode.png" alt="Dark/Light Mode">
         </button>
 
+        <div class="nav-btn header-btn">
+            <button onclick="toggleSidebar('right')">
+                <img src="./media/menu.png" alt="Right Sidebar">
+            </button>
+        </div>
+
     </header>
+
+    <div id="leftSidebar" class="sidebar left">
+        <div class="sidebar-tabs left-tabs">
+            <button><img src="./media/faq.png" alt="FAQ"></button>
+            <button><img src="./media/gallery.png" alt="Gallery"></button>
+            <button><img src="./media/settings.png" alt="Settings"></button>
+        </div>
+        <div class="sidebar-content">
+            <h2>General</h2>
+            <p>Content for FAQ, gallery, etc.</p>
+        </div>
+    </div>
+
+    <div id="rightSidebar" class="sidebar right">
+        <div class="sidebar-tabs right-tabs">
+            <button><img src="./media/search.png" alt="Search"></button>
+            <button><img src="./media/export.png" alt="Export CSV"></button>
+            <button><img src="./media/stats.png" alt="Stats"></button>
+        </div>
+        <div class="sidebar-content">
+            <h2>Calendar Tools</h2>
+            <p>Search, export, stats here.</p>
+        </div>
+    </div>
 
     <?php if ($successMsg): ?>
         <div class="alert success"><?= htmlspecialchars($successMsg) ?></div>
