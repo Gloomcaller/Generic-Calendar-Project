@@ -2,6 +2,28 @@
 
 include "connection.php";
 
+$visit_count = 0;
+$events_added = 0;
+$events_edited = 0;
+$events_deleted = 0;
+$downloads = 0;
+
+$today = date('Y-m-d');
+$stats_query = "INSERT INTO visitor_stats (visit_date, visit_count) 
+                VALUES ('$today', 1) 
+                ON DUPLICATE KEY UPDATE visit_count = visit_count + 1";
+$conn->query($stats_query);
+
+$stats_result = $conn->query("SELECT * FROM visitor_stats WHERE visit_date = '$today'");
+if ($stats_result && $stats_result->num_rows > 0) {
+    $stats = $stats_result->fetch_assoc();
+    $visit_count = $stats['visit_count'];
+    $events_added = $stats['events_added'];
+    $events_edited = $stats['events_edited'];
+    $events_deleted = $stats['events_deleted'];
+    $downloads = $stats['downloads'];
+}
+
 $successMsg = '';
 $errorMsg = '';
 $eventsFromDB = [];
@@ -21,12 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['action'] ?? '') === "add")
 
         $stmt->bind_param("ssssss", $eventName, $eventDesc, $start, $end, $startTime, $endTime);
 
-        $stmt->execute();
+        if ($stmt->execute()) {
+            $conn->query("UPDATE visitor_stats SET events_added = events_added + 1 WHERE visit_date = '$today'");
 
-        $stmt->close();
-
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=1");
-        exit;
+            $stmt->close();
+            header("Location: " . $_SERVER['PHP_SELF'] . "?success=1");
+            exit;
+        }
     } else {
         header("Location: " . $_SERVER['PHP_SELF'] . "?error=1");
         exit;
@@ -49,12 +72,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? '') === "edit"
 
         $stmt->bind_param("ssssssi", $eventName, $eventDesc, $start, $end, $startTime, $endTime, $id);
 
-        $stmt->execute();
+        if ($stmt->execute()) {
+            $conn->query("UPDATE visitor_stats SET events_edited = events_edited + 1 WHERE visit_date = '$today'");
 
-        $stmt->close();
-
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=2");
-        exit;
+            $stmt->close();
+            header("Location: " . $_SERVER['PHP_SELF'] . "?success=2");
+            exit;
+        }
     } else {
         header("Location: " . $_SERVER['PHP_SELF'] . "?error=2");
         exit;
@@ -67,10 +91,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? '') === "delet
     if ($id) {
         $stmt = $conn->prepare("DELETE FROM appointments WHERE id = ?");
         $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $stmt->close();
 
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=3");
+        if ($stmt->execute()) {
+            $conn->query("UPDATE visitor_stats SET events_deleted = events_deleted + 1 WHERE visit_date = '$today'");
+
+            $stmt->close();
+            header("Location: " . $_SERVER['PHP_SELF'] . "?success=3");
+            exit;
+        }
     }
 }
 
@@ -110,6 +138,33 @@ if ($result && $result->num_rows > 0) {
             $start->modify("+1 day");
         }
     }
+}
+
+if (isset($_GET['export']) && $_GET['export'] == 'csv') {
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename=calendar_events.csv');
+
+    $output = fopen('php://output', 'w');
+    fputcsv($output, array('Title', 'Description', 'Start Date', 'End Date', 'Start Time', 'End Time'));
+
+    $export_result = $conn->query("SELECT * FROM appointments");
+    if ($export_result && $export_result->num_rows > 0) {
+        while ($row = $export_result->fetch_assoc()) {
+            fputcsv($output, array(
+                $row['event_name'],
+                $row['event_description'],
+                $row['start_date'],
+                $row['end_date'],
+                $row['start_time'],
+                $row['end_time']
+            ));
+        }
+    }
+
+    $conn->query("UPDATE visitor_stats SET downloads = downloads + 1 WHERE visit_date = '$today'");
+
+    fclose($output);
+    exit();
 }
 
 $conn->close();

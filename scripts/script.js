@@ -285,6 +285,112 @@ document.querySelectorAll(".faq-question").forEach(button => {
     });
 });
 
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+function showSlide(index) {
+    slides.forEach((s, i) => {
+        s.classList.toggle("active", i === index);
+    });
+}
+
+document.querySelector(".slider-prev").addEventListener("click", () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+});
+
+document.querySelector(".slider-next").addEventListener("click", () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+});
+
+function exportToCSV() {
+    window.location.href = window.location.pathname + '?export=csv';
+}
+
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+const eventDetails = document.getElementById("eventDetails");
+
+searchInput.addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    searchResults.innerHTML = "";
+
+    if (query.length === 0) return;
+
+    const matches = events.filter(e =>
+        e.title.toLowerCase().includes(query) ||
+        e.description.toLowerCase().includes(query)
+    );
+
+    matches.forEach(event => {
+        const btn = document.createElement("button");
+        btn.textContent = event.title + " (" + event.date + ")";
+        btn.onclick = () => {
+            eventDetails.innerHTML = `
+                <h4>${event.title}</h4>
+                <p><strong>Date:</strong> ${event.date}</p>
+                <p><strong>Time:</strong> ${event.start_time} - ${event.end_time}</p>
+                <p>${event.description}</p>
+            `;
+        };
+        searchResults.appendChild(btn);
+    });
+});
+
+document.addEventListener('click', function (e) {
+    if (e.target.closest('.event')) {
+        const eventElement = e.target.closest('.event');
+        const eventTitle = eventElement.querySelector('.eventName').textContent;
+
+        const event = events.find(ev =>
+            ev.title.split(" - ")[0] === eventTitle
+        );
+
+        if (event) {
+            eventDetails.innerHTML = `
+                <h4>${event.title}</h4>
+                <p><strong>Date:</strong> ${event.date}</p>
+                <p><strong>Time:</strong> ${event.start_time} - ${event.end_time}</p>
+                <p>${event.description}</p>
+            `;
+        }
+    }
+});
+
+function updateMarqueeWithUpcomingEvents() {
+    const today = new Date();
+    const sevenDaysLater = new Date();
+    sevenDaysLater.setDate(today.getDate() + 7);
+
+    const formatDateForComparison = (date) => {
+        const d = new Date(date);
+        return `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
+    };
+
+    const todayFormatted = formatDateForComparison(today);
+    const sevenDaysLaterFormatted = formatDateForComparison(sevenDaysLater);
+
+    const upcomingEvents = events.filter(event => {
+        const eventDate = event.date;
+        return eventDate >= todayFormatted && eventDate <= sevenDaysLaterFormatted;
+    });
+
+    const marquee = document.querySelector('marquee');
+    if (upcomingEvents.length > 0) {
+        const eventText = upcomingEvents.map(event =>
+            `${event.title.split(" - ")[0]} (${event.date})`
+        ).join(' • ');
+        marquee.textContent = 'Upcoming: ' + eventText;
+    } else {
+        marquee.textContent = 'No upcoming events in the next 7 days';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    updateMarqueeWithUpcomingEvents();
+});
+
 renderCalendar(currDate);
 updateClock();
 setInterval(updateClock, 1000);

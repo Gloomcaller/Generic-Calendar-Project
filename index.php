@@ -71,10 +71,35 @@ include "./scripts/calendar.php";
             </p>
 
             <h3 class="sidebar-heading">Brief history of calendars</h3>
-            <div class="sidebar-slider">
-                <div class="slide active">Calendars have existed since ancient times...</div>
-                <div class="slide">The Gregorian calendar was introduced in 1582...</div>
-                <div class="slide">Other calendars include lunar, solar, and lunisolar...</div>
+            <div class="sidebar-section">
+                <div class="slider-box">
+                    <div class="slide active">The earliest calendars were based on the cycles of the moon, moon phases
+                        and also the
+                        sun.</div>
+                    <div class="slide">Ancient Egyptians developed a 365-day calendar over 4000 years ago in history.
+                    </div>
+                    <div class="slide">The Gregorian calendar, introduced in 1582, is the most widely used calendar in
+                        the world today.</div>
+                    <div class="slide">Before Julius Caesar's reform, the Roman calendar was a chaotic 355-day system
+                        that required extra months.</div>
+                    <div class="slide">When Britain switched calendars in 1752, people rioted demanding their "11 days"
+                        back that were skipped.</div>
+                    <div class="slide">After the Revolution, France introduced a decimal calendar with 10-day weeks that
+                        was abandoned after 12 years.</div>
+                    <div class="slide">The Gregorian calendar adds a Leap Day, but century years must be divisible by
+                        400 to be leap years.</div>
+                    <div class="slide">The proposed International Fixed Calendar had 13 months of 28 days each, plus a
+                        single "Year Day".</div>
+                    <div class="slide">The ancient Maya used a complex system of three interlocking calendars for
+                        sacred, solar, and historical time.</div>
+                    <div class="slide active">Ethiopia uses its own calendar, which is roughly 7 to 8 years behind the
+                        more common Gregorian one.</div>
+                </div>
+                <div class="slider-controls">
+                    <button class="btn slider-prev">
+                        << Prev</button>
+                            <button class="btn slider-next">Next >></button>
+                </div>
             </div>
 
             <p class="sidebar-heading">
@@ -85,6 +110,32 @@ include "./scripts/calendar.php";
                 <img src="./media/Calendar-Summer.png" alt="Gallery Image 2">
                 <img src="./media/Calendar-Fall.png" alt="Gallery Image 3">
                 <img src="./media/Calendar-Winter.png" alt="Gallery Image 3">
+            </div>
+        </div>
+    </div>
+
+    <div id="rightSidebar" class="sidebar right">
+        <div class="sidebar-content">
+
+            <div class="sidebar-counters">
+                <p><strong>Visits:</strong> <span id="visitCount"><?php echo $visit_count; ?></span></p>
+                <p><strong>Events Added:</strong> <span id="eventsAdded"><?php echo $events_added; ?></span></p>
+                <p><strong>Events Edited:</strong> <span id="eventsEdited"><?php echo $events_edited; ?></span></p>
+                <p><strong>Events Deleted:</strong> <span id="eventsDeleted"><?php echo $events_deleted; ?></span></p>
+                <p><strong>Downloads:</strong> <span id="downloadsCount"><?php echo $downloads; ?></span></p>
+            </div>
+
+            <div class="sidebar-search">
+                <input type="text" id="searchInput" placeholder="Search events...">
+                <div id="searchResults"></div>
+            </div>
+
+            <div class="sidebar-export">
+                <button id="exportCSV" onclick="exportToCSV()">Download CSV</button>
+            </div>
+
+            <div class="sidebar-details">
+                <div id="eventDetails">Select an event to see details.</div>
             </div>
 
             <p class="sidebar-heading">
@@ -106,39 +157,6 @@ include "./scripts/calendar.php";
                     <p>Use the "Export CSV" option in the right sidebar to download your events.</p>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div id="rightSidebar" class="sidebar right">
-        <div class="sidebar-content">
-
-            <div class="sidebar-marquee">
-                <marquee behavior="scroll" direction="left">
-                    Upcoming: Meeting (Sept 5) • Exam (Sept 7) • Birthday (Sept 10)
-                </marquee>
-            </div>
-
-            <div class="sidebar-counters">
-                <p><strong>Visits:</strong> 0</p>
-                <p><strong>Events Added:</strong> 0</p>
-                <p><strong>Events Edited:</strong> 0</p>
-                <p><strong>Events Deleted:</strong> 0</p>
-                <p><strong>Downloads:</strong> 0</p>
-            </div>
-
-            <div class="sidebar-search">
-                <input type="text" id="searchInput" placeholder="Search events...">
-            </div>
-
-            <div class="sidebar-export">
-                <button id="exportCSV">Download CSV</button>
-            </div>
-
-            <div class="sidebar-details">
-                <h3>Event Details</h3>
-                <p>Select an event to see details here.</p>
-            </div>
-
         </div>
     </div>
 
