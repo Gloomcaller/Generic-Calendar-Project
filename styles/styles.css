@@ -21,7 +21,7 @@
 }
 
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: var(--background);
     color: var(--text);
     line-height: 1.5;
@@ -69,7 +69,6 @@ button:focus {
     font-weight: bold;
     padding: 0.5rem 1rem;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
     letter-spacing: 2px;
     border: 0.5rem rgb(80, 73, 73) solid;
     border-radius: 100px;
